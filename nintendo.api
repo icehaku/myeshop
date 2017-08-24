@@ -1,0 +1,6 @@
+http://www.nintendo.com/json/content/get/filter/game?limit=1000&system=switch
+
+
+http://www.nintendo.com/json/content/get/filter/game
+
+https://api.ec.nintendo.com/v1/price?country=ZA&lang=fr&ids=70010000000301

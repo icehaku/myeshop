@@ -4,6 +4,7 @@ class PricesController < ApplicationController
     @games      = Game.includes(:prices).with_game_code.by_game_code
     @countries  = Price.distinct.pluck(:country).sort
     @currencies = Price.distinct.pluck(:currency).sort
+    @currencies << "BRL"
     @currency   = @currencies.include?(params[:currency]) ? params[:currency] : nil
 
     respond_to do |format|

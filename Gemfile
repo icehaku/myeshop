@@ -15,6 +15,7 @@ gem 'money-rails'
 gem 'slim-rails'
 
 group :development, :test do
+  gem 'no_proxy_fix'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'jazz_fingers'
 end

@@ -6,8 +6,9 @@ namespace :currencies do
   desc 'Get all currencies exchange rates'
   task retrieve_all: :environment do
     currencies = Price.distinct.pluck(:currency).sort
+    currencies << "BRL"
 
-    if @currencies.present?
+    if currencies.present?
       currencies.each do |from|
         puts "Retieving #{currencies.count} rates for #{from} currency..."
         response = HTTParty.get(API_URL, query: { base: from, symbols: currencies.join(',') })

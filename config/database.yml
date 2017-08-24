@@ -1,13 +1,7 @@
-test:
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-  database: db/test.sqlite3
-
 development:
   adapter: postgresql
   encoding: unicode
-  database: hltb_bot
+  database: myeshop
   pool: 5
   username: postgres
   password: ""
@@ -15,5 +9,5 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: hltb_bot
+  database: myeshop
   pool: 5
