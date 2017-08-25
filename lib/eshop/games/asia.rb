@@ -14,11 +14,10 @@ module Eshop
         games = []
         guess_new_ids.map do |id|
           response = get(URI.join(URL, id))
+          #https://www.nintendo.co.jp/data/software/xml-system/switch-onsale.xml
           next unless response.code == 200
           games << JSON.parse(response.body.scan(JSON_REGEX).last.first, symbolize_names: true)
         end
-
-        raise games[0].inspect
 
         games.compact.map { |g| coerce(g) }
       end

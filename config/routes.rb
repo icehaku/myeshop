@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :games
     resources :prices
 
-    root to: 'games#index'    
+    root to: 'games#index'
   end
 
   #CSV Generators
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get :rates, to: 'application#rates'
   get :glossary, to: 'application#glossary'
   get :about, to: 'application#about'
+  get "/debug", to: 'games#debug'
 
   resources :games, only: :index
   resources :prices, only: :index

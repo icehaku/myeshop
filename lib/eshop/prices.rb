@@ -1,7 +1,7 @@
 require 'active_support/core_ext/array/grouping'
 require 'httparty'
 #dpge
-#require 'no_proxy_fix'
+require 'no_proxy_fix'
 
 module Eshop
   class Prices
@@ -16,8 +16,6 @@ module Eshop
       prices = ids.in_groups_of(limit).flat_map do |ids_to_fetch|
         Rails.logger.debug "Retrieving #{ids_to_fetch.count} prices..."
         query = DEFAULT_PARAMS.merge(country: country, ids: ids_to_fetch.join(','))
-        #temp_url = "https://api.ec.nintendo.com/v1/price?country=ZA&lang=fr&ids=70010000000302"
-        #response = get(temp_url)
         response = get(URL, query: query)
         JSON.parse(response.body, symbolize_names: true)[:prices]
       end
@@ -31,17 +29,6 @@ module Eshop
       currency = price.dig(:regular_price, :currency)
       discount_start = price.dig(:discount_price, :start_datetime).try(:to_datetime)
       discount_end  = price.dig(:discount_price, :end_datetime).try(:to_datetime)
-
-
-      #raise price.inspect
-      #raise discount_start.to_datetime.inspect
-      #raise "stop"
-      #discount_value_in_cents
-      #discount_start
-      #discount_end
-      #:discount_datetime_start
-      #:discount_datetime_end
-
 
       {
         nsuid: price[:title_id],
