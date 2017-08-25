@@ -3,8 +3,11 @@ development:
   encoding: unicode
   database: myeshop
   pool: 5
-  username: postgres
-  password: ""
+  #dpge
+  #username: postgres
+  #password: ""
+  username: ice 
+  password: "ice123"
 
 production:
   adapter: postgresql

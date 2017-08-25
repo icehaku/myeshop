@@ -18,6 +18,8 @@ module Eshop
           games << JSON.parse(response.body.scan(JSON_REGEX).last.first, symbolize_names: true)
         end
 
+        raise games[0].inspect
+
         games.compact.map { |g| coerce(g) }
       end
 

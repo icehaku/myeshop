@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824184442) do
+ActiveRecord::Schema.define(version: 20170825001807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,22 @@ ActiveRecord::Schema.define(version: 20170824184442) do
     t.string "cover_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "club_nintendo"
+    t.boolean "hd_rumble_b"
+    t.boolean "ir_motion_camera_b"
+    t.boolean "multiplayer_mode"
+    t.string "gift_finder_description_s"
+    t.boolean "play_mode_tv_mode_b"
+    t.boolean "play_mode_handheld_mode_b"
+    t.boolean "play_mode_tabletop_mode_b"
+    t.string "players_from"
+    t.string "players_to"
+    t.string "gift_finder_carousel_image_url_s"
+    t.string "publisher"
+    t.boolean "physical_version_b"
+    t.boolean "digital_version_b"
+    t.string "game_categories_txt"
+    t.string "language_availability"
     t.index ["game_code"], name: "index_games_on_game_code"
     t.index ["nsuid"], name: "index_games_on_nsuid"
   end

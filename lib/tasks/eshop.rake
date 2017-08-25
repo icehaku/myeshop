@@ -13,6 +13,7 @@ namespace :eshop do
       else
         next
       end
+      puts "Retrieving game #{raw_game[:slug]} region #{raw_game[:region]}"
       game.update_attributes!(raw_game)
     end
   end

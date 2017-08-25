@@ -8,7 +8,7 @@ gem 'rails', '~> 5.1.1'
 gem 'redis', '~>3.2'
 
 gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
-gem 'bugsnag'
+#gem 'bugsnag'
 gem 'countries'
 gem 'httparty'
 gem 'money-rails'
