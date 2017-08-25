@@ -14,7 +14,11 @@ namespace :eshop do
         next
       end
       puts "Retrieving game #{raw_game[:slug]} region #{raw_game[:region]}"
-      game.update_attributes!(raw_game)
+      begin
+        game.update_attributes!(raw_game)
+      rescue
+        raise raw_game.inspect
+      end
     end
   end
 
