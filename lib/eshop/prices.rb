@@ -1,7 +1,7 @@
 require 'active_support/core_ext/array/grouping'
 require 'httparty'
 #dpge
-require 'no_proxy_fix'
+#require 'no_proxy_fix'
 
 module Eshop
   class Prices

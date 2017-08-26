@@ -29,28 +29,39 @@ module Eshop
           title: game["TitleName"],
           release_date: Date.parse(game["SalesDateStr"]),
           nsuid: parseNID(game["LinkURL"]),
-          cover_url: game["ScreenshotImgURL"],
+          cover_url: parseImg(game["ScreenshotImgURL"]),
           publisher: game["MakerName"],
-          game_code: parseCode(game["ScreenshotImgURL"])[:code],
-          raw_game_code: parseCode(game["ScreenshotImgURL"])[:raw],
+          game_code: parseCode(game["ScreenshotImgURL"], game["LinkURL"])[:code],
+          raw_game_code: parseCode(game["ScreenshotImgURL"], game["LinkURL"])[:raw],
         }
       end
 
-      def self.parseCode(string)
-        if string.present? and string.include?("HAC")
-          {raw: string[-12..-5], code: string[-9..-6]}
+      def self.parseCode(scr_url, link_url)
+        if scr_url.present? and scr_url.include?("HAC")
+          {raw: scr_url[-12..-5], code: scr_url[-9..-6]}
+        elsif link_url.present? and link_url.include?("index.")
+          {raw: "HAC"+link_url[-16..-12].upcase, code: link_url[-16..-13].upcase}
         else
           {raw: nil, code: nil}
         end
       end
 
       def self.parseNID(string)
-        if string.present?
+        if string..present? and !string.include?("index.")
           string[-14..-1]
         else
           nil
         end
       end
+
+      def self.parseImg(image)
+        if image.present? and image.include?("/software/switch/img")
+          nil
+        else
+          image
+        end        
+      end
+
     end
   end
 end
