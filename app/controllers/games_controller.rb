@@ -6,6 +6,13 @@ class GamesController < ApplicationController
     @games = Game.with_game_code.by_game_code
   end
 
+  def show
+    @games = Game.where(game_code: params["id"])
+    games_ids = @games.pluck(:id)
+    @prices = Price.where(game_id: games_ids)
+    @euro_game = @games.where(region: "europe")
+  end
+
   def debug
     #raise "debug"
     require 'httparty'

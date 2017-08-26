@@ -39,7 +39,7 @@
           tr.game
             - if index.zero?
               td.game-cover rowspan=games.count
-                = cover ? image_tag("https://assets.calyh.re/resize?url=#{cover}", style: 'max-width:120px;max-height:120px;', class: 'rounded mx-auto d-block', title: 'wat') : nil
+                = cover ? image_tag("#{cover}", style: 'max-width:120px;max-height:120px;', class: 'rounded mx-auto d-block', title: 'wat') : nil
               td.game-code rowspan=games.count = game.game_code
             td.game-region = game.region
             td.game-title.text-overflow title=games.first.title = game.title

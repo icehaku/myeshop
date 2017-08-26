@@ -48,6 +48,16 @@ module Eshop
         games.map { |game| coerce(game) }
       end
 
+      def self.parseImg(image)
+        if image.present? and image.include?("/software/switch/img")
+          return "https://www.nintendo.co.jp/"+image
+        elsif image.present? and image.include?("//cdn")
+          return "https:"+image
+        else
+          return image
+        end        
+      end
+
       def self.coerce(game)
         lol = {
           region: 'europe',
@@ -56,7 +66,7 @@ module Eshop
           title: game[:title],
           release_date: Date.parse(game[:date_from]),
           nsuid: game.dig(:nsuid_txt, 0),
-          cover_url: game[:image_url_sq_s],
+          cover_url: parseImg(game[:image_url_sq_s]),
 
           club_nintendo: game[:club_nintendo],
           hd_rumble_b: game[:hd_rumble_b],

@@ -1,0 +1,100 @@
+- content_for :head_style do
+  css:
+    .games {
+      min-width: 800px;
+    }
+    .game-cover {
+      width: 144px;
+    }
+    .game-code {
+      width: 70px;
+    }
+    .game-region {
+      width: 100px;
+    }
+    .game-title {
+      width: 100%;
+    }
+    .game-nsuid {
+      width: 170px;
+    }
+    .game-release-date {
+      width: 140px;
+    }
+
+.games-codes
+  table.table
+    thead.thead-default
+      tr
+        th.game-cover Cover
+        th.game-code Code
+        th.game-region Region
+        th.game-title Title
+        th.game-nsuid eShop ID (nsuid)
+        th.game-release-date Release date
+    tbody.games
+      - cover = @games.map(&:cover_url).compact.first
+      - @games.each_with_index do |game, index|
+        tr.game
+          - if index.zero?
+            td.game-cover rowspan=@games.count
+              = cover ? image_tag("#{cover}", style: 'max-width:120px;max-height:120px;', class: 'rounded mx-auto d-block', title: 'wat') : nil
+            td.game-code rowspan=@games.count = game.game_code
+          td.game-region = game.region
+          td.game-title.text-overflow title=@games.first.title = game.title
+          td.game-nsuid.text-overflow title=game.nsuid = game.nsuid || 'NA'
+          td.game-release-date.text-overflow title=game.release_date.iso8601
+            time.text-overflow datetime=game.release_date.iso8601 = game.release_date.strftime("%b #{game.release_date.day.ordinalize}, %Y")
+
+.euro-details
+  table
+    thead.thead-default  
+      tr
+        th.game-club-nintendo Club Nintendo?
+        th.game-hd-rumble HD Rumble?
+        th.game-ir-motion-camera IR Motion Camera?
+        th.game-multiplayer-mode Multiplayer Mode?
+        th.game-play-mode-tv Play TV?
+        th.game-play-mode-handheld Handheld?
+        th.game-play-mode-tabletop Tabletop?
+        th.game-players-from Players From?
+        th.game-players-to Players To?
+        th.game-publisher Players Publisher?
+        th.game-physical-version Physical Version? 
+        th.game-digital-version Digital Version?
+        th.game-categories Categories?
+        th.game-languages Languages?
+      tbody.details
+        tr
+          td colspan=14
+            In this party game for Nintendo Switch, lock eyes with your opponent and play a series of games that use the many functions of the Joy-Con, including HD rumble and advanced motion sensors.
+        tr 
+          td.game-club-nintendo true
+          td.game-hd-rumble true
+          td.game-ir-motion-camera false
+          td.game-multiplayer-mode simultaneous
+          td.game-play-mode-tv true 
+          td.game-play-mode-handheld false
+          td.game-play-mode-tabletop true
+          td.game-players-from 1
+          td.game-players-to 4
+          td.game-publisher Nintendo
+          td.game-physical-version true
+          td.game-digital-version true
+          td.game-categories '["action", "arcade", "fighting", "music_and_party", "party"]'
+          td.game-languages '["english,japanese"]'
+
+.prices
+  - if @prices.present?        
+    table.table
+      thead.thead-default  
+        tr
+          th.country Country
+          th.original-currency Original Currency
+          th.price Price
+      tbody.prices
+        - @prices.each do |price|        
+            tr 
+              td.ol = price.country
+              td.olo = price.currency
+              td.lol = price.value_in_cents

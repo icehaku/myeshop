@@ -30,13 +30,6 @@ module Eshop
       end
 
       def self.coerce(game)
-        image = ""
-        if game[:hero_banner_url].include?("/software/switch/img")
-          image = nil
-        else
-          image = game[:hero_banner_url]
-        end
-
         {
           region: 'asia',
           title: game[:formal_name],
@@ -48,7 +41,9 @@ module Eshop
 
       def self.parseImg(image)
         if image.present? and image.include?("/software/switch/img")
-          return nil
+          return "https://www.nintendo.co.jp/"+image
+        elsif image.present? and image.include?("//cdn")
+          return "https:"+image
         else
           return image
         end        

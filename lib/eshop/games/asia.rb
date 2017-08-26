@@ -56,9 +56,11 @@ module Eshop
 
       def self.parseImg(image)
         if image.present? and image.include?("/software/switch/img")
-          nil
+          return "https://www.nintendo.co.jp/"+image
+        elsif image.present? and image.include?("//cdn")
+          return "https:"+image
         else
-          image
+          return image
         end        
       end
 

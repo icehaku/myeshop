@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     root to: 'games#index'
   end
 
+  resources :games do
+    resources :prices
+  end  
+
   #CSV Generators
   get :best_deals, to: 'application#best_deals'
   get :rates, to: 'application#rates'
