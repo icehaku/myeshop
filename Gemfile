@@ -2,13 +2,11 @@ source 'https://rubygems.org'
 ruby '2.4.1'
 
 gem 'puma', '~> 3.7'
-gem 'sqlite3'
 gem 'pg', '~> 0.18'
 gem 'rails', '~> 5.1.1'
 gem 'redis', '~>3.2'
 
 gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
-#gem 'bugsnag'
 gem 'countries'
 gem 'httparty'
 gem 'money-rails'
