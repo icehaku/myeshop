@@ -151,7 +151,8 @@ GEM
     pry-doc (0.10.0)
       pry (~> 0.9)
       yard (~> 0.9)
-    puma (3.8.2)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     rack (2.0.2)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -252,7 +253,7 @@ DEPENDENCIES
   money-rails
   no_proxy_fix
   pg (~> 0.18)
-  puma (~> 3.7)
+  puma (~> 4.3)
   rails (~> 5.1.1)
   redis (~> 3.2)
   rubocop
